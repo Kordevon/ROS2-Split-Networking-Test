@@ -8,4 +8,4 @@ docker run --rm --network=host \
   ros2-multi-test \
   bash -c "source /opt/ros/humble/setup.bash && \
            source /home/ws/install/setup.bash && \
-           ros2 run camera_node_pkg camera_node"
+           ros2 run test_controls controls_node"

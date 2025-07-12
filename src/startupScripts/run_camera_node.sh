@@ -5,9 +5,9 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 DDS_PROFILE_PATH="$SCRIPT_DIR/$PROFILE"
 
 docker run --rm --network=host \
-  -e FASTRTPS_DEFAULT_PROFILES_FILE=/root/ws/DDS_Profiles/camera_profile.xml \
-  -v "$DDS_PROFILE_PATH:/root/dds_profile.xml:ro" \
+  -e FASTRTPS_DEFAULT_PROFILES_FILE=/home/ws/src/DDS_Profiles/camera_profile.xml \
+  -v "$DDS_PROFILE_PATH:/home/ws/src/DDS_profiles/$PROFILE:ro \
   ros2-multi-test \
   bash -c "source /opt/ros/humble/setup.bash && \
-           source /root/talkers/install/setup.bash && \
-           ros2 run camera_node_pkg camera_node"
+           source /home/ws/install/setup.bash && \
+           ros2 run test_camera camera_node"
