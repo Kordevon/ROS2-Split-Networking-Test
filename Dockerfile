@@ -4,9 +4,26 @@ FROM osrf/ros:humble-desktop
 
 # Set environment variables for ROS distribution and workspace path.
 ENV ROS_DISTRO=humble
-ENV ROS_WS=/ros_ws
+ENV ROS_WS=/ws
 
+# Dockerfile
 
+# ... (other Dockerfile instructions like FROM, WORKDIR, etc.) ...
+RUN mkdir -p /etc/fastdds
+# Copy your Fast DDS profiles XML file into the image
+# Make sure the source path (e.g., ./config/DEFAULT_FASTDDS_PROFILES.xml)
+# is correct on your host machine relative to where you build the Docker image.
+COPY ./src/DDS_Profiles/DEFAULT_FASTDDS_PROFILES.xml /etc/fastdds/DEFAULT_FASTDDS_PROFILES.xml
+
+# Set the environment variable to point to the copied file
+# This tells Fast DDS where to find its default profiles.
+ENV FASTDDS_DEFAULT_PROFILES_FILE="/etc/fastdds/DEFAULT_FASTDDS_PROFILES.xml"
+
+# Optional: If you want to use specific profiles from the XML for ROS 2 QoS.
+# This variable might be set by default in some ROS 2 base images, but it's good to be explicit.
+# ENV RMW_FASTRTPS_USE_QOS_FROM_XML=1
+
+# ... (rest of your Dockerfile, e.g., building your ROS 2 workspace, CMD, etc.) ...
 
 # Install common build tools and Python package installer.
 # Add any other system-level dependencies your packages might need here.
