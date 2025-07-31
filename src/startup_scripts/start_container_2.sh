@@ -21,7 +21,7 @@ sudo docker run -it --rm \
   --name ${CONTAINER_NAME} \
   --privileged \
   -v /dev/bus/usb:/dev/bus/usb \
-  -v "${FAST_DDS_PROFILE_PATH}:/fastdds_eth1.xml:ro" \
+  -v /home/kevin/ws/src/DDS_Profiles/fastdds_eth1.xml:/fastdds_eth1.xml:ro \
   -v "${WORKSPACE_HOST_PATH}:/ros_ws:rw" \
   -e ROS_DOMAIN_ID=${ROS_DOMAIN_ID} \
   -e RMW_IMPLEMENTATION=rmw_fastrtps_cpp \
