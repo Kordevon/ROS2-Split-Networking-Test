@@ -4,15 +4,10 @@
 ROS_DOMAIN_ID="0"
 CONTAINER_NAME="ros_container_2"
 DOCKER_IMAGE="osrf/ros:humble-desktop"
-# Point to the ros_eth_usb-specific profile
-FAST_DDS_PROFILE_PATH="/home/kevin/ws/src/fastdds_profiles/fastdds_ros_eth_usb.xml"
+# Point to the eth1
+FAST_DDS_PROFILE_PATH="/home/kevin/ws/src/fastdds_profiles/fastdds_eth1.xml"
 WORKSPACE_HOST_PATH="/home/kevin/ws/"
 ROS_DISTRO="humble"
-
-echo "--- Starting Docker Container 2 (Node C/D) in Host Network Mode ---"
-echo "Container Name: ${CONTAINER_NAME}"
-echo "ROS_DOMAIN_ID: ${ROS_DOMAIN_ID}"
-echo "Using FastDDS Profile: ${FAST_DDS_PROFILE_PATH}" # New for clarity
 
 docker rm -f ${CONTAINER_NAME} 2>/dev/null || true
 
@@ -25,15 +20,11 @@ sudo docker run -it --rm \
   -v "${WORKSPACE_HOST_PATH}:/ros_ws:rw" \
   -e ROS_DOMAIN_ID=${ROS_DOMAIN_ID} \
   -e RMW_IMPLEMENTATION=rmw_fastrtps_cpp \
-  -e FASTRTPS_DEFAULT_PROFILES_FILE=/fastdds_config.xml \
+  -e FASTRTPS_DEFAULT_PROFILES_FILE=/fastdds_eth1.xml \
   ${DOCKER_IMAGE} \
   bash -c " \
         source /opt/ros/${ROS_DISTRO}/setup.bash && \
         source /ros_ws/install/setup.bash && \
-        echo 'ROS2 environment loaded. You are in ${CONTAINER_NAME}.' && \
-        echo 'Container IPs (same as host): $(hostname -I)' && \
-        echo 'To run Node C: ros2 run NODE_C_PKG NODE_C_EXEC' && \
-        echo 'To run Node D: ros2 run NODE_C_PKG NODE_D_EXEC' && \
         exec bash \
       "
 

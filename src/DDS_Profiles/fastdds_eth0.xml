@@ -1,18 +1,23 @@
-<!--
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com">
--->
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastrtps_profiles">
     <participant profile_name="fastdds_eth0" is_default_profile="true">
         <rtps>
-            <builtin>
+             <builtin>
                 <initialPeersList>
                     <locator>
                         <udpv4>
                             <address>192.168.10.2</address>
                             <port>7412</port>
                         </udpv4>
-                    </locator>
+                        </locator>
+                        <locator>
+                        <tcpv4>
+                            <address>192.168.10.2</address>
+                            <port>7412</port>
+                        </tcpv4>
+                        </locator>
                 </initialPeersList>
             </builtin>
         </rtps>
     </participant>
+</profiles>
