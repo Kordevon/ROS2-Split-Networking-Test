@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<profiles xmlns="http://www.eprosima.com">
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastrtps_profiles">
     <transport_descriptors>
         <transport_descriptor>
-            <transport_id>CustomUdpTransportWhitelistAddress</transport_id>
+            <transport_id>udp</transport_id>
             <type>UDPv4</type>
             <interfaceWhiteList>
-                <address>192.168.1.2</address>
-                <address>192.168.1.1</address>
+                <address>192.168.2.1</address>
             </interfaceWhiteList>
         </transport_descriptor>
     </transport_descriptors>
-
-    <participant profile_name="CustomUdpTransportWhitelistAddressParticipant">
+    <participant profile_name="fastdds_eth0" is_default_profile="true">
         <rtps>
-            <useBuiltinTransports></useBuiltinTransports>
+            <useBuiltinTransports>false</useBuiltinTransports>
             <userTransports>
-                <transport_id>CustomUdpTransportWhitelistAddress</transport_id>
+                <transport_id>udp</transport_id>
             </userTransports>
+
+             <builtin>
+                <initialPeersList>
+                    <locator>
+                        <udpv4>
+                            <address>192.168.2.2</address>
+                            <port>7412</port>
+                        </udpv4>
+                        </locator>
+                </initialPeersList>
+            </builtin>
         </rtps>
     </participant>
 </profiles>

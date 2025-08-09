@@ -19,6 +19,8 @@ sudo docker run -P -it --rm \
   -v /home/kevin/ws/src/DDS_Profiles/fastdds_eth0.xml:/fastdds_eth0.xml:ro \
   -v "${WORKSPACE_HOST_PATH}:/ws:rw" \
   -e ROS_DOMAIN_ID=${ROS_DOMAIN_ID} \
+  -e RMW_IMPLEMENTATION=rmw_fastrtps_cpp \
+  -e FASTRTPS_DEFAULT_PROFILES_FILE=/fastdds_eth0.xml \
   --name ${CONTAINER_NAME} \
   ${DOCKER_IMAGE} \
   bash -c " \

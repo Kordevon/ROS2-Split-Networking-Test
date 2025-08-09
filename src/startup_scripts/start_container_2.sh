@@ -21,6 +21,7 @@ sudo docker run -it --rm \
   -e ROS_DOMAIN_ID=${ROS_DOMAIN_ID} \
   -e RMW_IMPLEMENTATION=rmw_fastrtps_cpp \
   -e FASTRTPS_DEFAULT_PROFILES_FILE=/fastdds_eth1.xml \
+  --name ${CONTAINER_NAME} \
   ${DOCKER_IMAGE} \
   bash -c " \
         source /opt/ros/${ROS_DISTRO}/setup.bash && \
