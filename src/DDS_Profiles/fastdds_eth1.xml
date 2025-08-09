@@ -6,13 +6,13 @@
                 <initialPeersList>
                     <locator>
                         <udpv4>
-                            <address>192.168.20.2</address>
+                            <address>192.168.2.2</address>
                             <port>7412</port>
                         </udpv4>
                         </locator>
                         <locator>
                         <tcpv4>
-                            <address>192.168.20.2</address>
+                            <address>192.168.2.2</address>
                             <port>7412</port>
                         </tcpv4>
                         </locator>
